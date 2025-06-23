@@ -54,9 +54,9 @@
             <div class="flex justify-center">
                 <img 
                     id="app-icon"
-                    src="https://placehold.co/160x160/1a202c/ffffff?text=Floro" 
+                    src="icon.png" 
                     alt="Floro App Icon" 
-                    class="w-32 h-32 md:w-40 md:h-40 rounded-3xl shadow-lg bg-gray-200 dark:bg-gray-800"
+                    class="w-32 h-32 md:w-40 md:h-40 rounded-3xl shadow-lg bg-gray-200 dark:bg-gray-800 object-cover"
                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/e2e8f0/4a5568?text=Icon';"
                 >
             </div>
@@ -81,7 +81,7 @@
                     <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.689 2.453L15.311 12L3.689 21.547C3.123 21.83 2.5 21.393 2.5 20.762V3.238c0-.631.623-1.068 1.189-.785zM16.311 12L4.689 2.453C4.123 2.17 3.5 2.607 3.5 3.238v17.524c0 .631.623 1.068 1.189.785L16.31 12zm.696-2.009L20.5 12l-3.494 2.009C16.891 14.248 16.5 13.555 16.5 12c0-1.555.39-2.248.507-2.009zM3.5 3.238v17.524c0 .63.623 1.069 1.189.785L15.31 12 4.689 2.453C4.123 2.17 3.5 2.607 3.5 3.238z" />
                     </svg>
-                    Download Now
+                    Download on the Play Store
                 </a>
             </div>
 
@@ -92,26 +92,14 @@
         // --- Theme Toggle Logic ---
         const themeToggle = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
-        const appIcon = document.getElementById('app-icon');
 
-        // Function to update icon based on theme
-        function updateIcon(isDarkMode) {
-            if (isDarkMode) {
-                appIcon.src = 'https://placehold.co/160x160/1a202c/ffffff?text=Floro';
-            } else {
-                appIcon.src = 'https://placehold.co/160x160/ffffff/1a202c?text=Floro';
-            }
-        }
-        
         // Initial state check
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlElement.classList.add('dark');
             themeToggle.checked = true;
-            updateIcon(true);
         } else {
             htmlElement.classList.remove('dark');
             themeToggle.checked = false;
-            updateIcon(false);
         }
 
         // Event listener for the toggle
@@ -119,13 +107,13 @@
             if (this.checked) {
                 htmlElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
-                updateIcon(true);
             } else {
                 htmlElement.classList.remove('dark');
                 localStorage.setItem('theme', 'light');
-                updateIcon(false);
             }
         });
     </script>
 </body>
 </html>
+```
+I've made two key changes: I updated the `src` attribute in the `<img>` tag to `icon.png`, and I removed the unnecessary JavaScript function that was handling the placeholder ico
